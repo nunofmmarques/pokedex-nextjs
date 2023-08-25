@@ -1,10 +1,10 @@
-import { Pokemon } from "../types/Pokemon";
+import { Pokemon } from "@/types/Pokemon";
 
 export const fetchPokemon = async (pokemon: string) => {
   const URL = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
 
   let response;
-  let data: Pokemon;
+  let data: Pokemon | null = null;
   let error;
 
   try {
