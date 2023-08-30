@@ -11,7 +11,5 @@ export const fetchPokemonList = async (page: number) => {
     async (pokemon: { name: string }) => (await fetchPokemon(pokemon.name)).data
   );
 
-  const pokemonList = Promise.all(promises);
-
-  return pokemonList;
+  return Promise.all(promises);
 };

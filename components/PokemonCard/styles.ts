@@ -135,6 +135,10 @@ export const MoreDetailsButton = styled.button<{ color: string }>`
   font-weight: 700;
   color: #ffffff;
 
+  &:hover {
+    opacity: .8;
+  }
+
   svg {
     width: 1.5rem;
     height: 1.5rem;

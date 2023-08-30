@@ -21,11 +21,13 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h2 className={`mb-3 text-2xl font-semibold`}>
-        Pokedex
-      </h2>
-      <ModeToggle></ModeToggle>
+    <main className="p-5">
+      <div className='flex flex-col items-center justify-between'>
+        <h2 className={`mb-3 text-2xl font-semibold`}>
+          Pokedex
+        </h2>
+        <ModeToggle></ModeToggle>
+      </div>
       <Pokedex
         pokemonList={pokemonList}
         setPokemonList={setPokemonList}

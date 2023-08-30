@@ -3,6 +3,7 @@ import * as C from "./styles";
 import { Pokemon } from "@/types/Pokemon";
 import { pokemonTypes } from "@/utils/pokemonTypes";
 import { SkeletonLoading } from "@/components/helper/SkeletonLoading";
+import Link from 'next/link'
 
 type PokemonCardProps = {
   pokemon: Pokemon;
@@ -36,9 +37,11 @@ export const PokemonCard = (props: PokemonCardProps) => {
       </C.PokemonType>
       <C.PokemonFeatures>
       </C.PokemonFeatures>
-      <C.MoreDetailsButton color={color}>
-        Mais Detalhes
-      </C.MoreDetailsButton>
+      <Link href={`/pokemon/${props.pokemon.name}`} className="w-full">
+        <C.MoreDetailsButton color={color}>
+          Mais Detalhes
+        </C.MoreDetailsButton>
+      </Link>
     </C.Container>
   );
 };

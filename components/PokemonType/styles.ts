@@ -9,7 +9,6 @@ export const Type = styled.button<{ color: string }>`
   border-radius: 0.5rem;
   flex-shrink: 0;
 
-  font-family: "Montserrat";
   font-size: 1rem;
   line-height: 150%;
   font-weight: 400;
