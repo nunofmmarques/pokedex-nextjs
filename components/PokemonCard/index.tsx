@@ -1,9 +1,9 @@
 import { PokemonType } from "@/components/PokemonType";
 import * as C from "./styles";
 import { Pokemon } from "@/types/Pokemon";
-import { pokemonTypes } from "@/utils/pokemonTypes";
 import { SkeletonLoading } from "@/components/helper/SkeletonLoading";
 import Link from 'next/link'
+import { formatPokemonId, typeColor } from "@/components/helper/format";
 
 type PokemonCardProps = {
   pokemon: Pokemon;
@@ -12,15 +12,7 @@ type PokemonCardProps = {
 export const PokemonCard = (props: PokemonCardProps) => {
   const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${props.pokemon.id}.png`;
 
-  const [{ color }] = pokemonTypes.filter(
-    (type) => props.pokemon.types[0].type.name.indexOf(type.name) !== -1
-  );
-
-  const formatPokemonId = (id: number) => {
-    if (id < 10) return `#00${id}`;
-    else if (id >= 10 && id < 99) return `#0${id}`;
-    else return `#${id}`;
-  };
+  const [{ color }] = typeColor(props.pokemon.types)
 
   return (
     <C.Container>

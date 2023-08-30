@@ -3,42 +3,17 @@ import { PokemonType } from "@/components/PokemonType";
 import { Pokemon } from "@/types/Pokemon";
 import { pokemonTypes } from "@/utils/pokemonTypes";
 import { SkeletonLoading } from "@/components/helper/SkeletonLoading";
-import Link from 'next/link'
+import { formatPokemonId, formatStatName, typeColor } from "@/components/helper/format";
 import * as C from "./styles";
 
 type PokemonPageProps = {
-    pokemon: Pokemon;
+    pokemon: Pokemon | null;
 };
 
 export const PokemonPage = (props: PokemonPageProps) => {
     const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${props.pokemon.id}.png`;
 
-    const [{ color }] = pokemonTypes.filter(
-        (type) => props.pokemon.types[0].type.name.indexOf(type.name) !== -1
-    );
-
-    const formatPokemonId = (id: number) => {
-        if (id < 10) return `#00${id}`;
-        else if (id >= 10 && id < 99) return `#0${id}`;
-        else return `#${id}`;
-    };
-
-    const formatStatName = (statName: string) => {
-        switch (statName) {
-            case "hp":
-                return "HP";
-            case "attack":
-                return "Attack";
-            case "defense":
-                return "Defense";
-            case "special-attack":
-                return "Sp. Atk";
-            case "special-defense":
-                return "Sp. Def";
-            case "speed":
-                return "Speed";
-        }
-    };
+    const [{ color }] = typeColor(props.pokemon.types)
 
     return (
         <C.Wrapper>
