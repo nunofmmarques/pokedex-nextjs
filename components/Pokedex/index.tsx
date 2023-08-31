@@ -3,8 +3,9 @@ import * as C from "./styles";
 import { Loading } from "@/components/helper/Loading";
 import { Pokemon } from "@/types/Pokemon";
 import { useEffect, useState, useCallback } from "react";
-import InfiniteScroll from 'react-infinite-scroller';
 import { fetchPokemonList } from "@/api/fetchPokemonList";
+// @ts-ignore
+import InfiniteScroll from 'react-infinite-scroller';
 
 type PokedexProps = {
   pokemonList: Pokemon[];
