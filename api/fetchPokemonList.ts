@@ -2,8 +2,8 @@ import { fetchPokemon } from "./fetchPokemon";
 import { API_baseURL } from "@/utils/constants";
 
 export const fetchPokemonList = async (page: number) => {
-  const offset = 9 * (page - 1);
-  const URL = `${API_baseURL}/pokemon?offset=${offset}&limit=9`;
+  const offset = 20 * (page - 1);
+  const URL = `${API_baseURL}/pokemon?offset=${offset}&limit=20`;
 
 
   const response = await fetch(URL);

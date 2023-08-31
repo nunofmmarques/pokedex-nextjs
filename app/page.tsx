@@ -1,6 +1,5 @@
 "use client";
 
-import Image from 'next/image'
 import { useEffect, useState } from "react";
 import { ModeToggle } from "@/components/ui/mode-toggle"
 import { Pokemon } from "@/types/Pokemon";
@@ -15,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       setLoading(true);
-      setPokemonList(await fetchPokemonList(1));
+      setPokemonList(await fetchPokemonList(page));
       setLoading(false);
     })();
   }, []);
@@ -28,6 +27,7 @@ export default function Home() {
         </h2>
         <ModeToggle></ModeToggle>
       </div>
+
       <Pokedex
         pokemonList={pokemonList}
         setPokemonList={setPokemonList}
