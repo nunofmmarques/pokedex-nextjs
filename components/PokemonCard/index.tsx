@@ -4,13 +4,14 @@ import { Pokemon } from "@/types/Pokemon";
 import { SkeletonLoading } from "@/components/helper/SkeletonLoading";
 import Link from 'next/link'
 import { formatPokemonId, typeColor } from "@/components/helper/format";
+import { API_IMG_baseURL } from "@/utils/constants";
 
 type PokemonCardProps = {
   pokemon: Pokemon;
 };
 
 export const PokemonCard = (props: PokemonCardProps) => {
-  const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${props.pokemon.id}.png`;
+  const imgUrl = API_IMG_baseURL + props.pokemon.id + '.png';
 
   const [{ color }] = typeColor(props.pokemon.types)
 

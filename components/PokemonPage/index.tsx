@@ -5,23 +5,36 @@ import { pokemonTypes } from "@/utils/pokemonTypes";
 import { SkeletonLoading } from "@/components/helper/SkeletonLoading";
 import { formatPokemonId, formatStatName, typeColor } from "@/components/helper/format";
 import * as C from "./styles";
+import Image from 'next/image'
+import Pokeball from "@/public/pokeball.svg";
+import { Scale, Ruler } from "lucide-react"
+import { API_IMG_baseURL } from "@/utils/constants";
 
 type PokemonPageProps = {
     pokemon: Pokemon | null;
 };
 
 export const PokemonPage = (props: PokemonPageProps) => {
-    const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${props.pokemon.id}.png`;
+    const imgUrl = API_IMG_baseURL + props.pokemon.id + '.png';
 
     const [{ color }] = typeColor(props.pokemon.types)
 
     return (
         <C.Wrapper>
-            <C.Modal>
+            <C.Card>
+                <C.CardOverlay color={color} />
+
                 <C.PokemonData>
-                    <C.CardOverlay color={color} />
                     <C.PokemonImg>
                         <SkeletonLoading src={imgUrl} alt={props.pokemon.name} />
+                        <C.PokeballContainer>
+                            <Image
+                                src={Pokeball}
+                                width={16}
+                                height={16}
+                                alt="pokeball"
+                            />
+                        </C.PokeballContainer>
                     </C.PokemonImg>
                     <C.PokemonNumber>{formatPokemonId(props.pokemon.id)}</C.PokemonNumber>
                     <C.PokemonName>{props.pokemon.name}</C.PokemonName>
@@ -30,26 +43,29 @@ export const PokemonPage = (props: PokemonPageProps) => {
                             <PokemonType key={type.name} type={type.name} tabIndex={false} />
                         ))}
                     </C.PokemonType>
-                    <C.PokemonFeatures>
-                        <C.PokemonWeight>
-                            <div>
-                                <span>{`${props.pokemon.weight / 10}`} kg</span>
-                            </div>
-                            <span>Peso</span>
-                        </C.PokemonWeight>
-                        <C.PokemonHeight>
-                            <div>
-                                <span>{`${props.pokemon.height / 10}`} m</span>
-                            </div>
-                            <span>Altura</span>
-                        </C.PokemonHeight>
-                    </C.PokemonFeatures>
                 </C.PokemonData>
 
-                <C.Divider>
-                </C.Divider>
-
                 <C.PokemonStats>
+                    <C.PokemonFeatures>
+                        <C.PokemonWeight>
+                            <div className="flex items-center gap-x-3">
+                                <Scale className="h-5 w-5 opacity-90" />
+                                <div className="flex flex-col">
+                                    <span className="text-xs opacity-80">Peso</span>
+                                    <span className="font-bold">{`${props.pokemon.weight / 10}`} kg</span>
+                                </div>
+                            </div>
+                        </C.PokemonWeight>
+                        <C.PokemonHeight>
+                            <div className="flex items-center gap-x-3">
+                                <Ruler className="h-5 w-5 opacity-90" />
+                                <div className="flex flex-col">
+                                    <span className="text-xs opacity-80">Altura</span>
+                                    <span className="font-bold">{`${props.pokemon.height / 10}`} m</span>
+                                </div>
+                            </div>
+                        </C.PokemonHeight>
+                    </C.PokemonFeatures>
                     <C.StatsTitle>Stats</C.StatsTitle>
                     <C.StatsList>
                         {props.pokemon.stats.map(({ stat, base_stat }) =>
@@ -67,7 +83,7 @@ export const PokemonPage = (props: PokemonPageProps) => {
                         )}
                     </C.StatsList>
                 </C.PokemonStats>
-            </C.Modal>
+            </C.Card>
         </C.Wrapper>
     );
 };

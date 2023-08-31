@@ -1,7 +1,8 @@
 import { Pokemon } from "@/types/Pokemon";
+import { API_baseURL } from "@/utils/constants";
 
 export const fetchPokemon = async (pokemon: string) => {
-  const URL = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
+  const URL = `${API_baseURL}/pokemon/${pokemon}`;
 
   let response;
   let data: Pokemon | null = null;

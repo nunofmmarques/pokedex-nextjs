@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
@@ -40,13 +40,14 @@ const modal = keyframes`
   }
 `;
 
-export const Modal = styled.div`
+export const Card = styled.div`
+  border: 1px solid #ffffff1f;
   background: rgba(6, 11, 40, 0.15);
   backdrop-filter: blur(20px);
   border-radius: 1.5rem;
   position: relative;
   display: grid;
-  grid-template-columns: 21rem 3.5rem 34.75rem;
+  grid-template-columns: 21rem 34.75rem;
   align-items: end;
   opacity: 0;
   transform: scale(0.8);
@@ -73,19 +74,20 @@ export const CardOverlay = styled.div<{ color: string }>`
   &::after {
     content: "";
     display: block;
-    width: 12.5rem;
-    height: 12.5rem;
+    width: 20.5rem;
+    height: 20.5rem;
     background: ${(props) => props.color};
     filter: blur(128px);
     position: absolute;
     top: 0;
-    left: 4.25rem;
+    left: 2rem;
   }
 
   @media (max-width: 62.5rem) {
     &::after {
       left: 50%;
       transform: translateX(-50%);
+      top: 3rem;
     }
   }
 `;
@@ -102,21 +104,26 @@ export const PokemonData = styled.div`
 `;
 
 export const PokemonImg = styled.div`
-  position: absolute;
-  top: -9.38rem;
-  left: 2.5rem;
-
-  @media (max-width: 62.5rem) {
-    top: -10.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+  margin-bottom: 1rem;
 `;
 
 export const PokemonNumber = styled.span`
   font-size: 1.25rem;
   line-height: 135%;
-  font-weight: 700;
+  font-weight: 400;
+  opacity: .8;
+`;
+
+export const PokeballContainer = styled.span`
+  img {
+    position: absolute;
+    min-width: 17rem;
+    min-height: 17rem;
+    transition: 0.2s;
+    top: 1rem;
+    z-index: -1;
+    opacity: .2;
+  }
 `;
 
 export const PokemonType = styled.div`
@@ -150,7 +157,7 @@ export const PokemonFeatures = styled.div`
 `;
 
 export const PokemonWeight = styled.div`
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
 
@@ -168,7 +175,7 @@ export const PokemonWeight = styled.div`
     font-size: 1rem;
     line-height: 150%;
     font-weight: 400;
-  }
+  } */
 `;
 
 export const PokemonHeight = styled(PokemonWeight)``;
@@ -291,9 +298,9 @@ export const ProgressBarFill = styled.div<{ base_stat: number }>`
   background: ${(props) => (props.base_stat >= 50 ? "#1CD80E" : "#FF364E")};
   box-shadow: 0 0 0.75rem 0.25rem
     ${(props) =>
-      props.base_stat >= 50
-        ? "rgba(28, 216, 14, 0.25)"
-        : "rgba(255, 54, 78, 0.25)"};
+    props.base_stat >= 50
+      ? "rgba(28, 216, 14, 0.25)"
+      : "rgba(255, 54, 78, 0.25)"};
   height: 0.5rem;
   border-radius: 0.25rem;
   transform: translate3d(-100%, 0, 0);
